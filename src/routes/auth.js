@@ -11,8 +11,8 @@ const {
   validateSignInRequest,
 } = require("../validators/auth");
 const { requireSignIn } = require("../common-middleware");
-router.post("/usersignin", userSignIn);
-router.post("/usersignup", userSignUp);
+router.post("/usersignin", validateSignInRequest, isRequestValidated,userSignIn);
+router.post("/usersignup", validateSignUpRequest, isRequestValidated,userSignUp);
 router.post("/adminsignin", validateSignInRequest, isRequestValidated, adminSignin);
 router.post("/adminsignup", validateSignUpRequest, isRequestValidated, adminSignup);
 router.post(

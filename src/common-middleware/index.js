@@ -5,10 +5,9 @@ exports.requireSignIn = (req, res, next) => {
   if (req.headers.autherization === null) {
     return res.status(400).json({ message: "Authorization required" });
   }
-  const token = req.headers.autherization.split(" ")[1];
+  const token = req.headers.autherization;
   const user = jwt.verify(token, "mern");
   req.user = user;
-  console.log("USERE IN HERE", user);
   next();
 };
 exports.userMiddleware = (req, res, next) => {
