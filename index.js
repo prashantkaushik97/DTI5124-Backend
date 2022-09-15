@@ -3,7 +3,7 @@ const env = require("dotenv");
 const app = express();
 
 //const userRoutes = require("./src/routes/auth");
-const adminRoutes = require("./src/routes/admin/auth");
+const adminRoutes = require("./src/routes/auth.js");
 const categoryRoutes = require("./src/routes/category.js");
 const cartRoutes = require("./src/routes/cart.js");
 const productRoutes = require("./src/routes/products.js");
@@ -11,7 +11,7 @@ const productRoutes = require("./src/routes/products.js");
 const mongoose = require("mongoose");
 mongoose
   .connect(
-    `mongodb+srv://root:admin@cluster0.f3j6b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    `mongodb+srv://prashant:dti5124@ecom-cluster.zn7muor.mongodb.net/test`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

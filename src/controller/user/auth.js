@@ -1,6 +1,6 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
-exports.signup = (req, res) => {
+exports.userSignUp = (req, res) => {
   // const errors = validationResult(req);
   // return res.status(400).json({ error: errors.array() });
   User.findOne({ email: req.body.email }).exec((errir, user) => {
@@ -9,6 +9,11 @@ exports.signup = (req, res) => {
         message: "User already exists",
       });
     const { firstName, lastName, email, password, role } = req.body;
+
+    if (role=='admin')
+      return res.status(400).json({
+        message: "Can not create an admin here.",
+      });
     const _user = new User({
       firstName,
       lastName,
@@ -31,7 +36,7 @@ exports.signup = (req, res) => {
     });
   });
 };
-exports.signin = (req, res) => {
+exports.userSignIn = (req, res) => {
   User.findOne({ email: req.body.email }).exec((error, user) => {
     if (error) {
       return res.status(400).json({
@@ -55,7 +60,6 @@ exports.signin = (req, res) => {
             fullName,
           },
         });
-        console.log("THISISISIISI", user);
       } else if (user.role != "admin") {
         res.status(400).json({
           message: "Access Denied",

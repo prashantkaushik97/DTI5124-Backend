@@ -1,6 +1,6 @@
 const User = require("../../models/user");
-const jwt = require("jsonwebtoken");
-exports.signup = (req, res) => {
+const jwt = require("jsonwebtoken"); 
+exports.adminSignup = (req, res) => {
   // const errors = validationResult(req);
   // return res.status(400).json({ error: errors.array() });
   User.findOne({ email: req.body.email }).exec((errir, user) => {
@@ -31,7 +31,7 @@ exports.signup = (req, res) => {
     });
   });
 };
-exports.signin = (req, res) => {
+exports.adminSignin = (req, res) => {
   User.findOne({ email: req.body.email }).exec((error, user) => {
     if (error) {
       return res.status(400).json({
